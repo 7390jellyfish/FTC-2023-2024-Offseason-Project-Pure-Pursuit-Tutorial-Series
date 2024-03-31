@@ -36,22 +36,25 @@ public class RobotMovement {
         for(int i = 0; i < pathPoints.size() - 1; i++) {
 
             CurvePoint startLine = pathPoints.get(i);
-            CurvePoint endLIne = pathPoints.get(i + 1);
+            CurvePoint endLine = pathPoints.get(i + 1);
 
-            ArrayList<Point> intersections = lineCircleIntersection(robotLocation, followRadius, startLine.toPoint(), endLIne.toPoint());
+            ArrayList<Point> intersections = lineCircleIntersection(robotLocation, followRadius, startLine.toPoint(), endLine.toPoint());
 
             double closestAngle = 100000000;
 
             for(Point thisIntersection : intersections) {
                 double angle = Math.atan2(thisIntersection.y - worldYPosition, thisIntersection.x - worldXPosition);
                 double deltaAngle = Math.abs(MathFunctions.AngleWrap(angle - worldAngle_rad));
+                System.out.println(STR."Delta angle\{deltaAngle}");
+                System.out.println("deltaAngle");
 
                 if(deltaAngle < closestAngle) {
                     closestAngle = deltaAngle;
                     followMe.setPoint(thisIntersection);
                 }
             }
-            System.out.println("Current line: " + i + " Current closest delta angle: " + closestAngle);
+            System.out.println(intersections);
+//            System.out.println("Current line: " + i + " Current closest delta angle: " + closestAngle);
         }
         return followMe;
     }
