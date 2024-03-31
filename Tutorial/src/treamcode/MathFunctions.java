@@ -27,7 +27,7 @@ public class MathFunctions {
             linePoint1.x = linePoint2.x + 0.003;
         }
 
-        double m1 = ((linePoint1.y - linePoint2.y)/(linePoint1.x - linePoint2.x));
+        double m1 = ((linePoint2.y - linePoint1.y)/(linePoint2.x - linePoint1.x));
 
         double quadraticA = 1.0 + pow(m1, 2);
 
@@ -39,7 +39,7 @@ public class MathFunctions {
 
         ArrayList<Point> allPoints = new ArrayList<>();
 
-        try {
+//        try {
             double xRoot1 = (-quadraticB + sqrt(pow(quadraticB,2)) - (4.0 * quadraticA * quadraticC)) / (2.0 * quadraticA);
 
             double yRoot1 = m1 * (xRoot1 - x1) + y1;
@@ -47,27 +47,39 @@ public class MathFunctions {
             xRoot1 += circleCenter.x;
             yRoot1 += circleCenter.y;
 
-            double minX = Math.min(linePoint1.x, linePoint2.x);
-            double maxX = Math.max(linePoint1.x, linePoint2.x);
+            double minX = linePoint1.x < linePoint2.x ? linePoint1.x : linePoint2.x;
+            double maxX = linePoint1.x > linePoint2.x ? linePoint1.x : linePoint2.x;
 
 
+            System.out.println("xRoot1 " + xRoot1);
+            System.out.println("minX " + minX);
+            System.out.println("maxX " + maxX);
             if (xRoot1 > minX && xRoot1 < maxX) {
+                System.out.println("top");
                 allPoints.add(new Point(xRoot1, yRoot1));
             }
 
             double xRoot2 = (-quadraticB - sqrt(pow(quadraticB,2)) - (4.0 * quadraticA * quadraticC)) / (2.0 * quadraticA);
             double yRoot2 = m1 * (xRoot2 - x1) + y1;
 
+        System.out.println("xRoot2 " + xRoot2);
+        System.out.println("yRoot2 " + yRoot2);
+
+            System.out.println("xRoot2 " + xRoot2);
+            System.out.println("yRoot2 " + yRoot2);
+
             xRoot2 += circleCenter.x;
             yRoot2 += circleCenter.y;
 
             if (xRoot2 > minX && xRoot2 < maxX) {
+                System.out.println("bottom");
                 allPoints.add(new Point(xRoot2, yRoot2));
             }
 
-        }catch(Exception ignored) {
-
-        }
+//        }catch(Exception e) {
+//            System.out.println(e);
+//        }
+        System.out.println("all points: " + allPoints);
         return allPoints;
     }
 }
