@@ -27,7 +27,7 @@ public class MathFunctions {
             linePoint1.x = linePoint2.x + 0.003;
         }
 
-        double m1 = ((linePoint2.y - linePoint1.y)/(linePoint2.x - linePoint1.x));
+        double m1 = (linePoint2.y - linePoint1.y)/(linePoint2.x - linePoint1.x);
 
         double quadraticA = 1.0 + pow(m1, 2);
 
@@ -40,7 +40,7 @@ public class MathFunctions {
         ArrayList<Point> allPoints = new ArrayList<>();
 
 //        try {
-            double xRoot1 = (-quadraticB + sqrt(pow(quadraticB,2)) - (4.0 * quadraticA * quadraticC)) / (2.0 * quadraticA);
+            double xRoot1 = (-quadraticB + sqrt(pow(quadraticB,2) - (4.0 * quadraticA * quadraticC))) / (2.0 * quadraticA);
 
             double yRoot1 = m1 * (xRoot1 - x1) + y1;
 
@@ -50,8 +50,16 @@ public class MathFunctions {
             double minX = linePoint1.x < linePoint2.x ? linePoint1.x : linePoint2.x;
             double maxX = linePoint1.x > linePoint2.x ? linePoint1.x : linePoint2.x;
 
-
+            System.out.println("A term: " + quadraticA);
+            System.out.println("B term: " + quadraticB);
+            System.out.println("C term: " + quadraticC);
+            System.out.println("m1: " + m1);
+            System.out.println("x1: " + x1);
+            System.out.println("y1: " + y1);
+            System.out.println("Point1: " + linePoint1);
+            System.out.println("circleCenter: " + circleCenter);
             System.out.println("xRoot1 " + xRoot1);
+            System.out.println("yRoot1 " + yRoot1);
             System.out.println("minX " + minX);
             System.out.println("maxX " + maxX);
             if (xRoot1 > minX && xRoot1 < maxX) {
@@ -59,11 +67,8 @@ public class MathFunctions {
                 allPoints.add(new Point(xRoot1, yRoot1));
             }
 
-            double xRoot2 = (-quadraticB - sqrt(pow(quadraticB,2)) - (4.0 * quadraticA * quadraticC)) / (2.0 * quadraticA);
+            double xRoot2 = (-quadraticB - sqrt(pow(quadraticB,2) - (4.0 * quadraticA * quadraticC))) / (2.0 * quadraticA);
             double yRoot2 = m1 * (xRoot2 - x1) + y1;
-
-        System.out.println("xRoot2 " + xRoot2);
-        System.out.println("yRoot2 " + yRoot2);
 
             System.out.println("xRoot2 " + xRoot2);
             System.out.println("yRoot2 " + yRoot2);
